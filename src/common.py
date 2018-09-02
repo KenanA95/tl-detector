@@ -1,5 +1,6 @@
-def inbounds(shape, x, y):
-    return 0 <= x < shape[0] and 0 <= y < shape[1]
+def inbounds(image, x, y):
+    return 0 <= x < image.shape[1] and 0 <= y < image.shape[0]
+
 
 def cutoff_lower(image, percent):
     """ Remove the lower part of an image """

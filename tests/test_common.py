@@ -1,5 +1,6 @@
 import unittest
 import random
+import numpy as np
 from skimage import data
 from src.common import *
 
@@ -7,11 +8,11 @@ from src.common import *
 class TestCommonMethods(unittest.TestCase):
 
     def test_inbounds(self):
-        shape = (100, 100)
-        self.assertTrue(inbounds(shape, 0, 0))
-        self.assertTrue(inbounds(shape, 99, 99))
-        self.assertFalse(inbounds(shape, 100, 100))
-        self.assertFalse(inbounds(shape, 50, 100))
+        image = np.zeros((100, 100), int)
+        self.assertTrue(inbounds(image, 0, 0))
+        self.assertTrue(inbounds(image, 99, 99))
+        self.assertFalse(inbounds(image, 100, 100))
+        self.assertFalse(inbounds(image, 50, 100))
 
     def test_cutoff_lower(self):
         percent = random.uniform(0, 1)
