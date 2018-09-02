@@ -1,5 +1,6 @@
 import os
 import cv2
+import time
 
 
 def read_directory_images(path, extension, ):
@@ -49,3 +50,15 @@ def extract_window(image, center, size):
         return None
 
     return image[min_y:max_y, min_x:max_x]
+
+
+def timeit(func):
+    """ Decorator to time how long functions take to run """
+    def timed(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(func.__name__ + " Run time: {:2.2f} sec".format(end_time - start_time))
+        return result
+
+    return timed
