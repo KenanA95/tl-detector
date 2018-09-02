@@ -1,3 +1,15 @@
+import os
+import cv2
+
+
+def read_directory_images(path, extension, ):
+    """ Read images from a directory based on file extension """
+
+    for filename in os.listdir(path):
+        if filename.endswith(extension):
+            yield cv2.imread(os.path.join(path, filename))
+
+
 def inbounds(image, x, y):
     return 0 <= x < image.shape[1] and 0 <= y < image.shape[0]
 
