@@ -30,3 +30,21 @@ class TestCommonMethods(unittest.TestCase):
 
         total_windows = int((512-16) / step_size[0]) * int((512-48) / step_size[1])
         self.assertEqual(i+1, total_windows)
+
+    def test_extract_window(self):
+        image = data.astronaut()
+
+        # Test odd-sized windows
+        window = extract_window(image, center=(256, 256), size=(25, 25))
+        self.assertEqual(window.shape, (25, 25, 3))
+
+        # Test even-sized windows
+        window = extract_window(image, center=(256, 256), size=(30, 30))
+        self.assertEqual(window.shape, (30, 30, 3))
+
+        # Test out of bounds windows
+        window = extract_window(image, center=(500, 500), size=(30, 30))
+        self.assertIsNone(window)
+
+        window = extract_window(image, center=(10, 10), size=(30, 30))
+        self.assertIsNone(window)
