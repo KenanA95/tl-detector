@@ -1,5 +1,7 @@
+import cv2
 import unittest
 import random
+import tempfile
 import numpy as np
 from skimage import data
 from src.common import *
@@ -48,3 +50,17 @@ class TestCommonMethods(unittest.TestCase):
 
         window = extract_window(image, center=(10, 10), size=(30, 30))
         self.assertIsNone(window)
+
+    def test_read_directory_images(self):
+        # Create a temporary directory
+        test_dir = tempfile.mkdtemp()
+
+        # Write a few images into it
+        cv2.imwrite(test_dir + '/0.png', data.astronaut())
+        cv2.imwrite(test_dir + '/1.png', data.coffee())
+        cv2.imwrite(test_dir + '/2.png', data.camera())
+
+        # Make sure all the images were read in and are not empty
+        images = read_directory_images(test_dir, '.png')
+        self.assertEqual(len(list(images)), 3)
+        [self.assertIsNotNone(im.shape) for im in images]
