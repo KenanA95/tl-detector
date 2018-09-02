@@ -6,6 +6,13 @@ from src.common import *
 
 class TestCommonMethods(unittest.TestCase):
 
+    def test_inbounds(self):
+        shape = (100, 100)
+        self.assertTrue(inbounds(shape, 0, 0))
+        self.assertTrue(inbounds(shape, 99, 99))
+        self.assertFalse(inbounds(shape, 100, 100))
+        self.assertFalse(inbounds(shape, 50, 100))
+
     def test_cutoff_lower(self):
         percent = random.uniform(0, 1)
         image = cutoff_lower(data.astronaut(), percent)
