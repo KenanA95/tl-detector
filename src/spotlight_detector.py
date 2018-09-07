@@ -26,6 +26,9 @@ class SpotlightDetector:
         # Watershed region growing algorithm with the spotlights as the seeds
         dist_transform = cv2.distanceTransform(thresh, cv2.DIST_L2, 5)
         ret, markers = cv2.connectedComponents(np.uint8(dist_transform))
+
+        # Make sure the background is not 0
+        markers += 1
         watershed_image = cv2.watershed(image, markers)
 
         # Grab the marker values and how many times they occur

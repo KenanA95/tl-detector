@@ -27,5 +27,4 @@ class TestSpotlightDetector(unittest.TestCase):
         detector = SpotlightDetector(25, max_size=100, kernel=kernel)
         roi = list(detector.compute_roi(self.image))
 
-        # TODO: Figure out why there's an off-by-one error
-        self.assertEqual(len(roi)+1, 3)
+        self.assertEqual(len(roi), 3)
