@@ -3,10 +3,19 @@ import cv2
 import time
 
 
-def read_directory_images(path, extension, ):
-    """ Read images from a directory based on file extension """
+def read_directory_images(path, extension, n=None):
+    """
+    Read images from a directory based on file extension
+    :param path: Path to the directory to read from
+    :param extension: The image extension i.e '.png', '.jpg', etc.
+    :param n: Number of files to read
+    :return: Set of images from the directory
+    """
 
-    for filename in os.listdir(path):
+    # Set n to the total number of files in the directory if no value is given
+    n = n if n else len(os.listdir(path))
+
+    for filename in os.listdir(path)[:n]:
         if filename.endswith(extension):
             yield cv2.imread(os.path.join(path, filename))
 

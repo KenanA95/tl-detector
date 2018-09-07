@@ -61,6 +61,11 @@ class TestCommonMethods(unittest.TestCase):
         cv2.imwrite(test_dir + '/2.png', data.camera())
 
         # Make sure all the images were read in and are not empty
-        images = read_directory_images(test_dir, '.png')
+        images = read_directory_images(test_dir, '.png', n=3)
         self.assertEqual(len(list(images)), 3)
+        [self.assertIsNotNone(im.shape) for im in images]
+
+        # Read in only the first two images
+        images = read_directory_images(test_dir, '.png', n=2)
+        self.assertEqual(len(list(images)), 2)
         [self.assertIsNotNone(im.shape) for im in images]
