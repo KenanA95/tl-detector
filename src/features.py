@@ -19,6 +19,10 @@ class HogDescriptor:
         plt.imshow(hog_image, cmap='gray')
         plt.show()
 
+    def __repr__(self):
+        return " Window Size: {0} \n Block Size: {1} \n Block Stride: {2} \n Cell Size: {3} \n Orientations: {4}" \
+               .format(self.win_size, self.block_size, self.block_stride, self.cell_size, self.orientations)
+
 
 class LBPDescriptor:
     def __init__(self, points, radius, method='default'):
