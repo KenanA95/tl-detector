@@ -26,5 +26,8 @@ class LBPDescriptor:
         self.radius = radius
         self.method = method
 
-    def compute_histogram(self):
+    def compute(self):
+        pass
+
+    def display(self):
         pass
