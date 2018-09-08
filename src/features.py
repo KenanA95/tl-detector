@@ -17,8 +17,7 @@ class Descriptor:
 
 
 class HogDescriptor(Descriptor):
-    def __init__(self, win_size, block_size, block_stride, cell_size, orientations):
-        self.win_size = win_size
+    def __init__(self, block_size, block_stride, cell_size, orientations):
         self.block_size = block_size
         self.block_stride = block_stride
         self.cell_size = cell_size
@@ -35,8 +34,8 @@ class HogDescriptor(Descriptor):
         plt.show()
 
     def __repr__(self):
-        return " Window Size: {0} \n Block Size: {1} \n Block Stride: {2} \n Cell Size: {3} \n Orientations: {4}" \
-               .format(self.win_size, self.block_size, self.block_stride, self.cell_size, self.orientations)
+        return " Block Size: {0} \n Block Stride: {1} \n Cell Size: {2} \n Orientations: {3}" \
+               .format(self.block_size, self.block_stride, self.cell_size, self.orientations)
 
 
 class LBPDescriptor(Descriptor):

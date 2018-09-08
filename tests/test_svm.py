@@ -7,8 +7,7 @@ from src.svm import *
 class TestSVM(unittest.TestCase):
 
     def setUp(self):
-        self.descriptor = HogDescriptor(win_size=(64, 128), block_size=(16, 16), block_stride=(8, 8), cell_size=(8, 8),
-                                        orientations=9)
+        self.descriptor = HogDescriptor(block_size=(16, 16), block_stride=(8, 8), cell_size=(8, 8), orientations=9)
         self.clf = SVM(self.descriptor)
 
         self.images = [data.astronaut(), data.hubble_deep_field(), data.coffee()]

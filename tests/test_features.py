@@ -8,8 +8,7 @@ class TestFeatures(unittest.TestCase):
 
     def test_hog_descriptor(self):
 
-        hog_descriptor = HogDescriptor(win_size=(64, 128), block_size=(16, 16), block_stride=(8, 8), cell_size=(8, 8),
-                                       orientations=9)
+        hog_descriptor = HogDescriptor(block_size=(16, 16), block_stride=(8, 8), cell_size=(8, 8), orientations=9)
         image = data.astronaut()
 
         # Make sure it returns a feature vector
