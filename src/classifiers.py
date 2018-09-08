@@ -1,5 +1,3 @@
-import cv2
-from src.features import Descriptor
 from sklearn import linear_model
 
 
@@ -9,8 +7,8 @@ class SVM:
         Linear SVM trained with stochastic gradient descent (SGD)
         :param descriptor: Feature Descriptor Object that converts images into vectors
         """
-        self.descriptor = descriptor
         self.clf = linear_model.SGDClassifier()
+        self.descriptor = descriptor
 
     def train(self, images, labels):
         features = [self.descriptor.compute(im) for im in images]
