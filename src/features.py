@@ -18,3 +18,13 @@ class HogDescriptor:
         fd, hog_image = self.compute(image, visualize=True)
         plt.imshow(hog_image, cmap='gray')
         plt.show()
+
+
+class LBPDescriptor:
+    def __init__(self, points, radius, method='default'):
+        self.points = points
+        self.radius = radius
+        self.method = method
+
+    def compute_histogram(self):
+        pass
