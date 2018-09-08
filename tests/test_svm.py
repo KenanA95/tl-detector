@@ -15,10 +15,11 @@ class TestSVM(unittest.TestCase):
         self.images = [cv2.resize(im, (256, 256)) for im in self.images]
 
     def test_svm_train(self):
-        """ Make sure the train function can run """
-
         res = self.clf.train(self.images, labels=[0, 0, 0])
         self.assertIsNotNone(res)
 
     def test_svm_predict(self):
-        pass
+        res = self.clf.predict_all(self.images)
+        self.assertIsNotNone(res)
+        self.assertEqual(len(res), 3)
+        [self.assertTrue(pred == 0 or pred == 1) for pred in res]
