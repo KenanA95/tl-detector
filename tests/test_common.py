@@ -9,6 +9,11 @@ from src.common import *
 
 class TestCommonMethods(unittest.TestCase):
 
+    def test_resize_images(self):
+        images = [data.astronaut(), data.hubble_deep_field(), data.coffee()]
+        images = resize_images(images, (256, 256))
+        [self.assertEqual(im.shape, (256, 256, 3)) for im in images]
+
     def test_inbounds(self):
         image = np.zeros((100, 100), int)
         self.assertTrue(inbounds(image, 0, 0))

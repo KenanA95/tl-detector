@@ -3,6 +3,10 @@ import cv2
 import time
 
 
+def resize_images(images, new_size):
+    return [cv2.resize(im, new_size) for im in images]
+
+
 def read_directory_images(path, extension, n=None):
     """
     Read images from a directory based on file extension
@@ -20,10 +24,6 @@ def read_directory_images(path, extension, n=None):
             yield cv2.imread(os.path.join(path, filename))
 
 
-def inbounds(image, x, y):
-    return 0 <= x < image.shape[1] and 0 <= y < image.shape[0]
-
-
 def cutoff_lower(image, percent):
     """ Remove the lower part of an image """
     y = image.shape[0]
@@ -37,6 +37,10 @@ def sliding_window(image, window_size, step_size):
         for x in range(0,  image.shape[1] - (window_size[0] - step_size[0]), step_size[0]):
             window = image[y: y+window_size[1], x:x + window_size[0]]
             yield x, y, window
+
+
+def inbounds(image, x, y):
+    return 0 <= x < image.shape[1] and 0 <= y < image.shape[0]
 
 
 def extract_window(image, center, size):
