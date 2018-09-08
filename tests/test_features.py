@@ -5,15 +5,17 @@ from src.features import *
 
 
 class TestFeatures(unittest.TestCase):
-    
-    def test_hog_multichannel(self):
+
+    def test_hog_descriptor(self):
+
+        hog_descriptor = HogDescriptor(win_size=(64, 128), block_size=(16, 16), block_stride=(8, 8), cell_size=(8, 8),
+                                       orientations=9)
         image = data.astronaut()
-        hog_descriptor = cv2.HOGDescriptor()
 
-        vertical_blocks = (image.shape[1] - hog_descriptor.winSize[0]) / hog_descriptor.blockStride[0]
-        horizontal_blocks = (image.shape[0] - hog_descriptor.winSize[1]) / hog_descriptor.blockStride[1]
-        blocks_per_image = (vertical_blocks + 1) * (horizontal_blocks + 1)
-        feature_length = 3780 * blocks_per_image * 3
+        # Make sure it returns a feature vector
+        self.assertIsNotNone(hog_descriptor.compute(image))
 
-        res = hog_multichannel(image, hog_descriptor)
-        self.assertEqual(len(res), int(feature_length))
+        # TODO: Add more output validation
+
+    def test_lbp_descriptor(self):
+        pass
