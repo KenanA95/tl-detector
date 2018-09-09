@@ -31,11 +31,11 @@ def cutoff_lower(image, percent):
     return image[:cutoff, :]
 
 
-def sliding_window(image, window_size, step_size):
+def sliding_window(image, win_size, step_size):
     """ Run a sliding window across an image and extract each window """
-    for y in range(0, image.shape[0] - (window_size[1] - step_size[1]), step_size[1]):
-        for x in range(0,  image.shape[1] - (window_size[0] - step_size[0]), step_size[0]):
-            window = image[y: y+window_size[1], x:x + window_size[0]]
+    for y in range(0, image.shape[0] - (win_size[1] - step_size[1]), step_size[1]):
+        for x in range(0,  image.shape[1] - (win_size[0] - step_size[0]), step_size[0]):
+            window = image[y: y+win_size[1], x:x + win_size[0]]
             yield x, y, window
 
 
@@ -75,3 +75,20 @@ def timeit(func):
         return result
 
     return timed
+
+
+def draw_boxes(image, coordinates, win_size):
+    """
+    Draw a list of boxes onto an image
+    :param image: Image to draw on
+    :param coordinates: List of (x, y) center coordinates
+    :param win_size: How large the boxes should be
+    :return:
+    """
+    x_offset = int((win_size[0] - 1) / 2)
+    y_offset = int((win_size[1] - 1) / 2)
+
+    for (x, y) in coordinates:
+        if inbounds(image, x - x_offset, y - y_offset) and inbounds(image, x + x_offset, y + y_offset):
+            cv2.rectangle(image, (x - x_offset, y - y_offset), (x + x_offset, y + y_offset), (0, 255, 0), 2)
+
