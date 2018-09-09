@@ -7,7 +7,7 @@ from skimage import data
 from src.helpers import *
 
 
-class TestCommonMethods(unittest.TestCase):
+class TestHelperMethods(unittest.TestCase):
 
     def test_resize_images(self):
         images = [data.astronaut(), data.hubble_deep_field(), data.coffee()]
