@@ -1,4 +1,5 @@
 from sklearn import linear_model
+from src.common import sliding_window, extract_window
 
 
 class SVM:
@@ -21,3 +22,14 @@ class SVM:
 
     def predict_all(self, images):
         return [self.predict(image) for image in images]
+
+    def run_sliding_window(self, image, win_size, step_size):
+        for (x, y, window) in sliding_window(image, win_size, step_size):
+            if self.predict(window):
+                yield (x, y)
+
+    def run_detector(self, detector, image, win_size):
+        for (x, y) in detector.compute_roi(image):
+            window = extract_window(image, (x, y), win_size)
+            if self.predict(window):
+                yield (x, y)
