@@ -3,13 +3,12 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-""" Identify the regions of interest in an image by
-        1. Locating spotlights (bright spots) through top-hat morphology
-        2. Perform a region growing algorithm (watershed) with the spotlights as the seeds 
-        3. Selecting the spotlights that do not grow too large """
-
-
 class SpotlightDetector:
+    """ Identify the regions of interest in an image by
+            1. Locating spotlights (bright spots) through top-hat morphology
+            2. Perform a region growing algorithm (watershed) with the spotlights as the seeds
+            3. Selecting the spotlights that do not grow too large """
+
     def __init__(self, threshold, max_size, kernel):
         self.threshold = threshold
         self.max_size = max_size

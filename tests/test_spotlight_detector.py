@@ -1,9 +1,9 @@
 import unittest
 import numpy as np
-from src.spotlight_detector import SpotlightDetector
+from src.detectors import SpotlightDetector
 
 
-class TestSpotlightDetector(unittest.TestCase):
+class TestDetectors(unittest.TestCase):
     def setUp(self):
         # Create an empty synthetic image
         self.image = np.zeros((500, 500, 3), np.uint8)
@@ -21,7 +21,7 @@ class TestSpotlightDetector(unittest.TestCase):
     def tearDown(self):
         del self.image
 
-    def test_detector(self):
+    def test_spotlight_detector(self):
         # Have the spotlight detector find the small spots but not the big spots
         kernel = np.ones((15, 15), int)
         detector = SpotlightDetector(25, max_size=100, kernel=kernel)
