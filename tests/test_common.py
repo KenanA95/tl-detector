@@ -4,7 +4,7 @@ import random
 import tempfile
 import numpy as np
 from skimage import data
-from src.common import *
+from src.helpers import *
 
 
 class TestCommonMethods(unittest.TestCase):

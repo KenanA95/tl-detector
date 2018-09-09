@@ -1,5 +1,5 @@
 from sklearn import linear_model
-from src.common import sliding_window, extract_window
+from src.helpers import sliding_window, extract_window
 
 
 class SVM:
