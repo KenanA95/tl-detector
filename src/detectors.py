@@ -3,6 +3,17 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
+class ColorDetector:
+    def __init__(self):
+        pass
+
+    def compute_roi(self):
+        pass
+
+    def display_roi(self):
+        pass
+    
+
 class SpotlightDetector:
     """ Identify the regions of interest in an image by
             1. Locating spotlights (bright spots) through top-hat morphology
