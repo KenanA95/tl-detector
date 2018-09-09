@@ -31,5 +31,5 @@ class SVM:
     def run_detector(self, detector, image, win_size):
         for (x, y) in detector.compute_roi(image):
             window = extract_window(image, (x, y), win_size)
-            if self.predict(window):
+            if window is not None and self.predict(window):
                 yield (x, y)
