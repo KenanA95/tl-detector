@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 from helpers import unpack_box
+from matplotlib import pyplot as plt
+from scipy.ndimage.measurements import label
 
 
 """
@@ -35,3 +37,22 @@ class HeatMap:
 
             self.add([box])
             self.history.append([box])
+
+    def get_labeled(self):
+        threshold_map = self.map >= self.threshold
+        labeled_map, num_labels = label(threshold_map)
+        return labeled_map
+
+    def show(self):
+        plt.imshow(self.map, cmap='hot')
+        plt.show()
+
+    def draw(self, image, color=(0, 255, 0)):
+        threshold_map = self.map >= self.threshold
+        labeled_map, num_labels = label(threshold_map)
+
+        for index in range(1, num_labels + 1):
+            y_coords, x_coords = (labeled_map == index).nonzero()
+            pt1 = x_coords.min(), y_coords.min()
+            pt2 = x_coords.max(), y_coords.max()
+            cv2.rectangle(image, pt1, pt2, color, thickness=2)
