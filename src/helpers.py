@@ -92,3 +92,10 @@ def draw_boxes(image, coordinates, win_size):
         if inbounds(image, x - x_offset, y - y_offset) and inbounds(image, x + x_offset, y + y_offset):
             cv2.rectangle(image, (x - x_offset, y - y_offset), (x + x_offset, y + y_offset), (0, 255, 0), 2)
 
+
+def unpack_box(box):
+    x_min = int(round(box['x_min']))
+    x_max = int(round(box['x_max']))
+    y_min = int(round(box['y_min']))
+    y_max = int(round(box['y_max']))
+    return x_min, x_max, y_min, y_max
