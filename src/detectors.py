@@ -12,7 +12,7 @@ class ColorDetector:
 
     def display_roi(self):
         pass
-    
+
 
 class SpotlightDetector:
     """ Identify the regions of interest in an image by
