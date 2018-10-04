@@ -1,0 +1,24 @@
+train:
+  descriptor: hog
+  outfile: models/svm.pkl
+
+run:
+  descriptor: hog
+  detector: spotlight
+  heatmap_memory: 12
+  heatmap_threshold: 3
+  bounding_box_size: (32, 64)
+
+hog_descriptor:
+  block_size: (8, 8)
+  block_stride: (2, 2)
+  cell_size: (2, 2)
+  orientations: 9
+
+lbp_descriptor:
+  radius: 3
+  points: 24
+
+spotlight:
+  threshold: 65
+  max_size: 300
