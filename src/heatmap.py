@@ -25,3 +25,13 @@ class HeatMap:
         for box in boxes:
             x_min, x_max, y_min, y_max = unpack_box(box)
             self.map[y_min:y_max, x_min:x_max] -= 1
+
+    def update(self, boxes):
+        for box in boxes:
+            # If we've reached our memory limit then remove the first box added
+            if len(self.history) == self.memory:
+                self.remove(self.history[0])
+                self.history = self.history[1:]
+
+            self.add([box])
+            self.history.append([box])
