@@ -35,8 +35,8 @@ class SVM:
                 yield (x, y)
 
 
-class HaarCascade:
-    def __init__(self):
+class Cascade:
+    def __init__(self, descriptor):
         pass
 
     def train(self, images, labels):
