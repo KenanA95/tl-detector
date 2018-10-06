@@ -33,6 +33,11 @@ class HogDescriptor(Descriptor):
         plt.imshow(hog_image, cmap='gray')
         plt.show()
 
+    @classmethod
+    def from_config_file(cls, config_settings):
+        return cls(config_settings['block_size'], config_settings['block_stride'], config_settings['cell_size'],
+                   config_settings['orientations'])
+
     def __repr__(self):
         return " Block Size: {0} \n Block Stride: {1} \n Cell Size: {2} \n Orientations: {3}" \
                .format(self.block_size, self.block_stride, self.cell_size, self.orientations)
@@ -50,6 +55,10 @@ class LBPDescriptor(Descriptor):
 
     def display(self):
         pass
+
+    @classmethod
+    def from_config_file(cls, config_settings):
+        return cls(config_settings['points'], config_settings['radius'])
 
     def __repr__(self):
         pass
