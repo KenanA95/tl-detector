@@ -62,3 +62,21 @@ class LBPDescriptor(Descriptor):
 
     def __repr__(self):
         pass
+
+
+class HaarDescriptor(Descriptor):
+    def __init__(self):
+        Descriptor.__init__(self)
+
+    def compute(self):
+        pass
+
+    def display(self):
+        pass
+
+    @classmethod
+    def from_config_file(cls, config_settings):
+        return cls()
+
+    def __repr__(self):
+        pass
