@@ -35,8 +35,8 @@ class HogDescriptor(Descriptor):
 
     @classmethod
     def from_config_file(cls, config_settings):
-        return cls(config_settings['block_size'], config_settings['block_stride'], config_settings['cell_size'],
-                   config_settings['orientations'])
+        return cls(eval(config_settings['block_size']), eval(config_settings['block_stride']),
+                   eval(config_settings['cell_size']), int(config_settings['orientations']))
 
     def __repr__(self):
         return " Block Size: {0} \n Block Stride: {1} \n Cell Size: {2} \n Orientations: {3}" \
@@ -58,7 +58,7 @@ class LBPDescriptor(Descriptor):
 
     @classmethod
     def from_config_file(cls, config_settings):
-        return cls(config_settings['points'], config_settings['radius'])
+        return cls(int(config_settings['points']), int(config_settings['radius']))
 
     def __repr__(self):
         pass
