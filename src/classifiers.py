@@ -33,3 +33,17 @@ class SVM:
             window = extract_window(image, (x, y), win_size)
             if window is not None and self.predict(window):
                 yield (x, y)
+
+
+class HaarCascade:
+    def __init__(self):
+        pass
+
+    def train(self, images, labels):
+        pass
+
+    def predict(self, image):
+        pass
+
+    def predict_all(self, images):
+        return [self.predict(image) for image in images]
