@@ -1,5 +1,6 @@
 from skimage.feature import hog
 from matplotlib import pyplot as plt
+from ast import literal_eval
 
 
 class Descriptor:
@@ -35,8 +36,8 @@ class HogDescriptor(Descriptor):
 
     @classmethod
     def from_config_file(cls, config_settings):
-        return cls(eval(config_settings['block_size']), eval(config_settings['block_stride']),
-                   eval(config_settings['cell_size']), int(config_settings['orientations']))
+        return cls(literal_eval(config_settings['block_size']), literal_eval(config_settings['block_stride']),
+                   literal_eval(config_settings['cell_size']), int(config_settings['orientations']))
 
     def __repr__(self):
         return " Block Size: {0} \n Block Stride: {1} \n Cell Size: {2} \n Orientations: {3}" \
