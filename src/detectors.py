@@ -13,6 +13,10 @@ class ColorDetector:
     def display_roi(self):
         pass
 
+    @classmethod
+    def from_config_file(cls, settings):
+        return cls()
+
 
 class SpotlightDetector:
     """ Identify the regions of interest in an image by
@@ -20,10 +24,10 @@ class SpotlightDetector:
             2. Perform a region growing algorithm (watershed) with the spotlights as the seeds
             3. Selecting the spotlights that do not grow too large """
 
-    def __init__(self, threshold, max_size, kernel):
+    def __init__(self, threshold, max_size, kernel_size):
         self.threshold = threshold
         self.max_size = max_size
-        self.kernel = kernel
+        self.kernel = np.ones((kernel_size, kernel_size), dtype=int)
 
     def compute_roi(self, image):
         """ Find the spotlights and perform region growing. Store markers that do not grow too large """
@@ -69,3 +73,7 @@ class SpotlightDetector:
 
         plt.imshow(display_img, cmap='gray')
         plt.show()
+
+    @classmethod
+    def from_config_file(cls, settings):
+        return cls(int(settings['threshold']), int(settings['max_size']), int(settings['kernel_size']))
