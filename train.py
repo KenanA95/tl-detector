@@ -4,6 +4,7 @@ from helpers import read_directory_images, resize_images
 from features import *
 from classifiers import *
 from sklearn.externals import joblib
+from ast import literal_eval
 
 
 def load_descriptor(settings):
@@ -36,7 +37,7 @@ if __name__ == "__main__":
     positive_images = read_directory_images(settings['train']['positive_image_directory'], extension='.png')
     negative_images = read_directory_images(settings['train']['negative_image_directory'], extension='.png')
 
-    training_size = eval(settings['train']['window_size'])
+    training_size = literal_eval(settings['train']['window_size'])
     positive_images = resize_images(list(positive_images), training_size)
     negative_images = resize_images(negative_images, training_size)
     images = np.concatenate((positive_images, negative_images))
@@ -48,4 +49,4 @@ if __name__ == "__main__":
 
     print("Starting training...")
     classifier.train(images, labels)
-    joblib.dump(classifier.clf, settings['train']['outfile'])
+    joblib.dump(classifier, settings['train']['outfile'])
