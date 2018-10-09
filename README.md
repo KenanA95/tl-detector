@@ -3,8 +3,7 @@
 Traffic light detection for autonomous driving
 
 
-For detailed explanations visit medium.com/@kenan.r.alkiek 
-
+For detailed explanations visit [medium.com/@kenan.r.alkiek](http://medium.com/@kenan.r.alkiek)
 ## Sample Usage
 ### Train A Model
 
@@ -29,11 +28,9 @@ For detailed explanations visit medium.com/@kenan.r.alkiek
 * **window_size - _tuple (int, int)_**: Size of the training windows
 
       
-***
-
 ### Run Options
 * **descriptor - _str_**: hog, lbp, or haar
-* **classifier_location - _str_**: Location of the saved classifier. The output of running train.py
+* **classifier_location - _str_**: Location of the saved classifier (the output of running train.py)
 * **detector - _str_**: spotlight, color
 * **heatmap_memory - _int_**: Number of frames to retain before removing the first frame from memory
 * **heatmap_threshold - _int_**: Number of overlapping detections in the heatmap before accepting a detection 
@@ -59,6 +56,6 @@ For detailed explanations visit medium.com/@kenan.r.alkiek
 ### Detector Options
 
 #### Spotlight
-* **max_size - _int_**: How large a spotlight can grow to before being rejected
-* **kernel - _int_**: Size of the kernel to apply with the top-hat morphology
+* **max_size - _int_**: How large a spotlight can grow before being rejected
+* **kernel - _int_**: Size of the kernel to apply during top-hat morphology
 * **threshold - _int_**: Threshold value applied after top-hat morphology
