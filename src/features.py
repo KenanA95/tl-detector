@@ -18,9 +18,8 @@ class Descriptor:
 
 
 class HogDescriptor(Descriptor):
-    def __init__(self, block_size, block_stride, cell_size, orientations):
+    def __init__(self, block_size, cell_size, orientations):
         self.block_size = block_size
-        self.block_stride = block_stride
         self.cell_size = cell_size
         self.orientations = orientations
         Descriptor.__init__(self)
@@ -36,12 +35,12 @@ class HogDescriptor(Descriptor):
 
     @classmethod
     def from_config_file(cls, config_settings):
-        return cls(literal_eval(config_settings['block_size']), literal_eval(config_settings['block_stride']),
-                   literal_eval(config_settings['cell_size']), int(config_settings['orientations']))
+        return cls(literal_eval(config_settings['block_size']), literal_eval(config_settings['cell_size']),
+                   int(config_settings['orientations']))
 
     def __repr__(self):
-        return " Block Size: {0} \n Block Stride: {1} \n Cell Size: {2} \n Orientations: {3}" \
-               .format(self.block_size, self.block_stride, self.cell_size, self.orientations)
+        return " Block Size: {0} \n Cell Size: {1} \n Orientations: {2}" \
+               .format(self.block_size, self.cell_size, self.orientations)
 
 
 class LBPDescriptor(Descriptor):
