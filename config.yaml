@@ -1,13 +1,19 @@
 train:
   descriptor: hog
+  classifier: svm
   outfile: models/svm.pkl
+  positive_image_directory: D:/tl_data/positives/
+  negative_image_directory: D:/tl_data/negatives/
+  window_size: (32, 64)
 
 run:
   descriptor: hog
+  classifier_location: models/svm.pkl
   detector: spotlight
   heatmap_memory: 12
   heatmap_threshold: 3
-  bounding_box_size: (32, 64)
+  image_directory: D:/tl_data/LISA/dayTest/
+  window_size: (32, 64)
 
 hog_descriptor:
   block_size: (8, 8)
@@ -19,6 +25,12 @@ lbp_descriptor:
   radius: 3
   points: 24
 
-spotlight:
+haar_descriptor:
+  feature_types:
+
+spotlight_detector:
   threshold: 65
   max_size: 300
+  kernel_size: 11
+
+color_detector:
