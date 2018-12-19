@@ -4,6 +4,15 @@ Traffic light detection for autonomous driving
 
 
 For detailed explanations visit [medium.com/@kenan.r.alkiek](http://medium.com/@kenan.r.alkiek)
+
+## Dependencies
+* cv2
+* numpy
+* sklearn
+* skimage
+* matplotlib
+* yaml
+
 ## Sample Usage
 ### Train A Model
 
