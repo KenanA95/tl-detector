@@ -3,36 +3,15 @@ from matplotlib import pyplot as plt
 from ast import literal_eval
 
 
-class Descriptor:
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
-
-    def compute(self, **kwargs):
-        pass
-
-    def compute_all(self, **kwargs):
-        pass
-
-    def display(self, **kwargs):
-        pass
-
-    def __repr__(self):
-        pass
-
-
-class HogDescriptor(Descriptor):
+class HogDescriptor:
     def __init__(self, block_size, cell_size, orientations):
         self.block_size = block_size
         self.cell_size = cell_size
         self.orientations = orientations
-        Descriptor.__init__(self)
 
     def compute(self, image, multichannel=True, visualize=False):
         return hog(image, self.orientations, pixels_per_cell=self.cell_size, cells_per_block=self.block_size,
                    multichannel=multichannel, visualize=visualize, block_norm='L2-Hys')
-
-    def compute_all(self, images, multichannel=True, visualize=False):
-        return [self.compute(im, multichannel, visualize) for im in images]
 
     def display(self, image):
         fd, hog_image = self.compute(image, visualize=True)
@@ -49,17 +28,13 @@ class HogDescriptor(Descriptor):
                .format(self.block_size, self.cell_size, self.orientations)
 
 
-class LBPDescriptor(Descriptor):
+class LBPDescriptor:
     def __init__(self, points, radius, method='default'):
         self.points = points
         self.radius = radius
         self.method = method
-        Descriptor.__init__(self)
 
     def compute(self):
-        pass
-
-    def compute_all(self, images, multichannel=True, visualize=False):
         pass
 
     def display(self):
@@ -73,14 +48,11 @@ class LBPDescriptor(Descriptor):
         pass
 
 
-class HaarDescriptor(Descriptor):
+class HaarDescriptor:
     def __init__(self):
-        Descriptor.__init__(self)
-
-    def compute(self):
         pass
 
-    def compute_all(self):
+    def compute(self):
         pass
 
     def display(self):
