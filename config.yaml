@@ -15,16 +15,19 @@ run:
   image_directory: D:/tl_data/LISA/dayTest/
   window_size: (32, 64)
 
-hog_descriptor:
+svm:
+  C: 10.0
+
+hog:
   block_size: (8, 8)
   cell_size: (2, 2)
   orientations: 9
 
-lbp_descriptor:
+lbp:
   radius: 3
   points: 24
 
-haar_descriptor:
+haar:
   row_coordinate:
   column_coordinate:
 
