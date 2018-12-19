@@ -9,15 +9,15 @@ from ast import literal_eval
 
 def load_descriptor(settings):
     return {
-        'hog': HogDescriptor.from_config_file(settings['hog_descriptor']),
-        'lbp': LBPDescriptor.from_config_file(settings['lbp_descriptor']),
-        'haar': HaarDescriptor.from_config_file(settings['haar_descriptor'])
+        'hog': HogDescriptor.from_config_file(settings['hog']),
+        'lbp': LBPDescriptor.from_config_file(settings['lbp']),
+        'haar': HaarDescriptor.from_config_file(settings['haar'])
     }.get(settings['train']['descriptor'], 'hog')    # Default to HOG for invalid input
 
 
 def load_classifier(settings, descriptor):
     return {
-        'svm': SVM(descriptor),
+        'svm': SVM(descriptor, settings['svm']['C']),
         'cascade': Cascade(descriptor),
     }.get(settings['train']['classifier'], 'svm')   # Default to SVM for invalid input
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     training_size = literal_eval(settings['train']['window_size'])
     positive_images = resize_images(list(positive_images), training_size)
-    negative_images = resize_images(negative_images, training_size)
+    negative_images = resize_images(list(negative_images), training_size)
     images = np.concatenate((positive_images, negative_images))
 
     # Set up the labels for binary classification
