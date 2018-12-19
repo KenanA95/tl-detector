@@ -24,6 +24,15 @@ def read_directory_images(path, extension, n=None):
             yield cv2.imread(os.path.join(path, filename))
 
 
+def validate_image_directory(path, extension):
+    """ Clean up empty images in a directory. Happens surprisingly often when importing a dataset """
+    for filename in os.listdir(path):
+        if filename.endswith(extension):
+            file_path = os.path.join(path, filename)
+            if cv2.imread(file_path) is None:
+                os.unlink(file_path)
+
+
 def cutoff_lower(image, percent):
     """ Remove the lower part of an image """
     y = image.shape[0]
