@@ -10,6 +10,9 @@ class Descriptor:
     def compute(self, **kwargs):
         pass
 
+    def compute_all(self, **kwargs):
+        pass
+
     def display(self, **kwargs):
         pass
 
@@ -27,6 +30,9 @@ class HogDescriptor(Descriptor):
     def compute(self, image, multichannel=True, visualize=False):
         return hog(image, self.orientations, pixels_per_cell=self.cell_size, cells_per_block=self.block_size,
                    multichannel=multichannel, visualize=visualize, block_norm='L2-Hys')
+
+    def compute_all(self, images, multichannel=True, visualize=False):
+        return [self.compute(im, multichannel, visualize) for im in images]
 
     def display(self, image):
         fd, hog_image = self.compute(image, visualize=True)
@@ -53,6 +59,9 @@ class LBPDescriptor(Descriptor):
     def compute(self):
         pass
 
+    def compute_all(self, images, multichannel=True, visualize=False):
+        pass
+
     def display(self):
         pass
 
@@ -69,6 +78,9 @@ class HaarDescriptor(Descriptor):
         Descriptor.__init__(self)
 
     def compute(self):
+        pass
+
+    def compute_all(self):
         pass
 
     def display(self):
