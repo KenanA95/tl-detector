@@ -43,9 +43,7 @@ if __name__ == "__main__":
     images = np.concatenate((positive_images, negative_images))
 
     # Set up the labels for binary classification
-    positive_labels = np.ones(len(positive_images), dtype=int)
-    negative_labels = np.zeros(len(negative_images), dtype=int)
-    labels = np.concatenate((positive_labels, negative_labels))
+    labels = np.array([1] * len(positive_images) + [0] * len(negative_images))
 
     print("Starting training...")
     classifier.train(images, labels)
