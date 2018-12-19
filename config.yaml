@@ -2,8 +2,8 @@ train:
   descriptor: hog
   classifier: svm
   outfile: models/svm.pkl
-  positive_image_directory: D:/tl_data/positives/
-  negative_image_directory: D:/tl_data/negatives/
+  positive_image_directory: C:/Users/kenan/Desktop/repos/tl-dev/positives/
+  negative_image_directory: C:/Users/kenan/Desktop/repos/tl-dev/negatives/
   window_size: (32, 64)
 
 run:
@@ -19,8 +19,8 @@ svm:
   C: 10.0
 
 hog:
-  block_size: (8, 8)
-  cell_size: (2, 2)
+  block_size: (2, 2)
+  cell_size: (8, 8)
   orientations: 9
 
 lbp:
