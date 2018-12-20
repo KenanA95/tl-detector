@@ -1,6 +1,6 @@
 from sklearn.svm import SVC
 from sklearn import preprocessing
-from src.helpers import sliding_window, extract_window
+from helpers import sliding_window, extract_window
 
 
 class SVM:
@@ -42,17 +42,3 @@ class SVM:
 
     def __repr__(self):
         return "SVM with C Penalty: {}".format(self.C)
-
-
-class Cascade:
-    def __init__(self, descriptor):
-        pass
-
-    def train(self, images, labels):
-        pass
-
-    def predict(self, image):
-        pass
-
-    def predict_all(self, images):
-        return [self.predict(image) for image in images]
