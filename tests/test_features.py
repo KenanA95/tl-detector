@@ -1,7 +1,7 @@
 import cv2
 import unittest
 from skimage import data
-from src.features import *
+from src.descriptors import *
 
 
 class TestFeatures(unittest.TestCase):

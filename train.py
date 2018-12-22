@@ -1,7 +1,7 @@
 import yaml
 import numpy as np
 from helpers import read_directory_images, resize_images
-from features import *
+from descriptors import *
 from classifiers import *
 from sklearn.externals import joblib
 from ast import literal_eval
