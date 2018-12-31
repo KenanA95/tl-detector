@@ -2,7 +2,7 @@ import cv2
 import unittest
 from skimage import data
 from src.descriptors import *
-from src.classifiers import *
+from src.svm import *
 
 
 class TestSVM(unittest.TestCase):

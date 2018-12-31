@@ -1,7 +1,7 @@
 import yaml
 from helpers import read_directory_images, resize_images
 from descriptors import *
-from classifiers import *
+from svm import *
 from sklearn.externals import joblib
 from ast import literal_eval
 
