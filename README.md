@@ -3,7 +3,7 @@
 Traffic light detection for autonomous driving
 
 
-For detailed explanations visit [medium.com/@kenan.r.alkiek](http://medium.com/@kenan.r.alkiek)
+For detailed explanations visit [medium.com/@kenan.r.alkiek](http://medium.com/@kenan.r.alkiek) and docs/
 
 ## Dependencies
 * cv2
@@ -58,8 +58,7 @@ For detailed explanations visit [medium.com/@kenan.r.alkiek](http://medium.com/@
 * **radius - _float_**: Radius of circle (spatial resolution of the operator)
 
 #### Haar
-* **row_coordinate - _int_**: Row-coordinate of top left corner of the detection window
-* **column_coordinate - _int_**: Column-coordinate of top left corner of the detection window
+* **selected_feature_file - _str_**: File containing the coordinates and types of the Haar features you want to use. More information in the docs
 
 
 ### Detector Options
