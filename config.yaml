@@ -2,8 +2,8 @@ train:
   descriptor: hog
   classifier: svm
   outfile: models/svm.pkl
-  positive_image_directory: C:/Users/kenan/Desktop/repos/tl-dev/positives/
-  negative_image_directory: C:/Users/kenan/Desktop/repos/tl-dev/negatives/
+  positive_image_directory: C:/Users/kenan/Desktop/repos/tl-data/positives/
+  negative_image_directory: C:/Users/kenan/Desktop/repos/tl-data/negatives/
   window_size: (32, 64)
 
 run:
@@ -12,7 +12,7 @@ run:
   detector: spotlight
   heatmap_memory: 12
   heatmap_threshold: 3
-  image_directory: D:/tl_data/LISA/dayTest/
+  image_directory: C:/Users/kenan/Desktop/LISA_TL_dayTest/easyTest/
   window_size: (32, 64)
 
 svm:
@@ -28,8 +28,7 @@ lbp:
   points: 24
 
 haar:
-  row_coordinate:
-  column_coordinate:
+  selected_feature_file: models/haar_out.pkl
 
 spotlight_detector:
   threshold: 65
