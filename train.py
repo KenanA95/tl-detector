@@ -1,5 +1,4 @@
 import yaml
-import numpy as np
 from helpers import read_directory_images, resize_images
 from descriptors import *
 from classifiers import *
@@ -15,20 +14,13 @@ def load_descriptor(settings):
     }.get(settings['train']['descriptor'], 'hog')    # Default to HOG for invalid input
 
 
-def load_classifier(settings, descriptor):
-    return {
-        'svm': SVM(descriptor, settings['svm']['C']),
-        'cascade': Cascade(descriptor),
-    }.get(settings['train']['classifier'], 'svm')   # Default to SVM for invalid input
-
-
 if __name__ == "__main__":
 
     with open("config.yaml", "r") as stream:
         settings = yaml.load(stream)
 
     descriptor = load_descriptor(settings)
-    classifier = load_classifier(settings, descriptor)
+    classifier = SVM(descriptor, settings['svm']['C'])
 
     print("Descriptor Settings \n" + str(descriptor))
     print("Classifier Settings \n" + str(classifier))
@@ -41,6 +33,10 @@ if __name__ == "__main__":
     positive_images = resize_images(list(positive_images), training_size)
     negative_images = resize_images(list(negative_images), training_size)
     images = np.concatenate((positive_images, negative_images))
+
+    # LBP and Haar-like descriptors require gray images
+    if settings['train']['descriptor'] != 'hog':
+        images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in images]
 
     # Set up the labels for binary classification
     labels = np.array([1] * len(positive_images) + [0] * len(negative_images))
