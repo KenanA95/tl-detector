@@ -1,3 +1,5 @@
+import cv2
+import pickle
 import numpy as np
 from ast import literal_eval
 from matplotlib import pyplot as plt
@@ -66,31 +68,17 @@ class LBPDescriptor:
 
 
 class HaarDescriptor:
-    def __init__(self, feature_types, selected_feature_type=None, selected_feature_coord=None):
-        self.feature_types = feature_types
-        self.selected_feature_type = selected_feature_type
-        self.selected_feature_coord = selected_feature_coord
+    def __init__(self, selected_feature_file):
+        """ More information on selected feature file can be found in docs/ """
+        self.selected_feature_file = selected_feature_file
+        self.selected_feature_coord, self.selected_feature_type = pickle.load(open(selected_feature_file, 'rb'))
 
     def compute(self, image):
         ii = integral_image(image)
         return haar_like_feature(ii, 0, 0, ii.shape[0], ii.shape[1],
                                  self.selected_feature_type, self.selected_feature_coord)
 
-    def display(self, significant_features, image):
-        """ Plot the most significant haar-like features on top of an image """
-        feature_coord, _ = haar_like_feature_coord(width=32, height=64, feature_type=self.feature_types)
-
-        fig, axes = plt.subplots(3, 2)
-        for idx, ax in enumerate(axes.ravel()):
-            image = draw_haar_like_feature(image, 0, 0, 32, 64, [feature_coord[significant_features[idx]]])
-            ax.imshow(image)
-            ax.set_xticks([])
-            ax.set_yticks([])
-
-        fig.suptitle('The most important features')
-        plt.show()
-
-    def get_selected_features(self, images, labels, size=(32, 64)):
+    def identify_selected_features(self, images, labels, size=(32, 64)):
         """ """
         # Compute the haar-like features for all of the different feature types
         X = delayed(self.compute(img) for img in images)
@@ -111,15 +99,30 @@ class HaarDescriptor:
                'forest.').format(sig_feature_count, sig_feature_percent, 0.7))
 
         # Extract all possible features to be able to select the most salient
-        feature_coord, feature_type = haar_like_feature_coord(width=size[0], height=size[1],
-                                                              feature_type=self.feature_types)
+        feature_coord, feature_type = haar_like_feature_coord(width=size[0], height=size[1])
+
         # Store the most informative features
         self.selected_feature_coord = feature_coord[significant_features[:sig_feature_count]]
         self.selected_feature_type = feature_type[significant_features[:sig_feature_count]]
 
+    def display(self, significant_features, image):
+        """ Plot the most significant haar-like features on top of an image """
+        feature_coord, _ = haar_like_feature_coord(width=32, height=64)
+
+        fig, axes = plt.subplots(3, 2)
+        for idx, ax in enumerate(axes.ravel()):
+            image = draw_haar_like_feature(image, 0, 0, 32, 64, [feature_coord[significant_features[idx]]])
+            ax.imshow(image)
+            ax.set_xticks([])
+            ax.set_yticks([])
+
+        fig.suptitle('The most important features')
+        plt.show()
+
     @classmethod
     def from_config_file(cls, settings):
-        pass
+        return cls(settings['selected_feature_file'])
 
     def __repr__(self):
-        pass
+        return "Haar Descriptor with {} selected features. Model loaded from: {}"\
+            .format(len(self.selected_feature_type), self.selected_feature_file)
